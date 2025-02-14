@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YES! 💖</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 3rem;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        .gif {
+            width: 200px;
+            height: auto;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+
+        .music {
+            display: none; /* ซ่อน iframe เพื่อให้เพลงเล่นแต่ไม่รบกวนหน้าเว็บ */
+        }
+
+        .back-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            background: #ff4d6d;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out, background 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #e63950;
+            transform: scale(1.1);
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .clock {
+            font-size: 1.5rem;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Happy Valentine's Day naka 💖</h1>
+    <div id="clock" class="clock"></div>
+    <br>วันไหนๆก็สำหมด ไม่ใช่แค่วัน valentine สำหรับเค้าถ้ามีเธออยู่ เค้าอาจจะไม่หวานเหมือนคู่อื่นๆ แต่เค้าก็รักเธอที่สุด ทำทุกอย่างให้ดีที่สุดเท่าที่ผู้ชายอย่างเค้าทำได้</br>
+    <br>ขอโทษที่บางทีดื้อไปบ้างทำ ให้ต้องทะเลาะกันในบางวัน ขอโทษที่ขอโทษไม่เก่งปากแข็งไปหน่อย ขอโทษที่ไม่ค่อยให้ดอกไม้ (แต่ปีนี้ให้นะ555555) และขอบคุณเธอที่ยังรักกัน</br>
+    <img class="gif" src="https://phoneky.co.uk/thumbs/screensavers/down/animals/kisskitten_k767apni.gif" alt="Kiss Kitten GIF">
+    <button class="back-btn" onclick="window.location.href='index.html'">กลับไปหน้าหลัก</button>
+</body>
+<audio id="bgMusic" loop>
+    <source src="mu.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+</audio>
+
+<script>
+    window.onload = function() {
+        const audio = document.getElementById('bgMusic');
+        audio.currentTime = 14;
+        audio.play();
+    };
+
+    function calculateTimeDifference() {
+        const targetDate = new Date(2021, 7 - 1, 7, 0, 0, 0); 
+        const currentDate = new Date();
+        const diff = currentDate - targetDate;
+        const seconds = Math.floor(diff / 1000);
+        const minutes = Math.floor(seconds / 60);
+        const hours = Math.floor(minutes / 60);
+        const days = Math.floor(hours / 24);
+        const months = Math.floor(days / 30.44); 
+        const years = Math.floor(months / 12);
+
+        document.getElementById('clock').textContent = `
+            ตอนนี้ก็คบกันมา: ${years} ปี ${months % 12} เดือน ${days % 30} วัน 
+            ${hours % 24} ชั่วโมง ${minutes % 60} นาที ${seconds % 60} วินาที
+        `;
+    }
+    setInterval(calculateTimeDifference, 1000); 
+    calculateTimeDifference(); 
+</script>
+
+</html>
