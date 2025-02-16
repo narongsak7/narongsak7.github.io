@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>เมนู - บ้านขนมไทย 1</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="cssweb.css">
+    <style>
+        .reviews {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="mainna.html">wongnok</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="mainna.html">หน้าแรก</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="mainweb2.html">วิ</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+<div class="container py-4">
+    <h1 class="text-center mb-4">เมนู - วิทยา</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <a href="javascript:void(0);" onclick="toggleReviews(1)">
+                <img src="assets/vv.jpg" class="card-img-top" alt="ข้าวผัดปลากระป๋อง">
+                <div class="card-body">
+                </a>
+                    <h5 class="card-title" onclick="toggleReviews(1)">ข้าวผัดปลากระป๋อง</h5>
+                    <p class="card-text">แซ่บ</p>
+                </div>
+                <div class="reviews" id="food1">
+                    <h6>รีวิวจากลูกค้า</h6>
+                    <div class="review">
+                        <p>⭐⭐⭐⭐⭐</p>
+                        <p>อร่อยมากๆ ค่ะ!</p>
+                    </div>
+                    <div class="review">
+                        <p>⭐⭐⭐⭐</p>
+                        <p>อร่อย</p>
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="reviewName" placeholder="ชื่อผู้รีวิว">
+                        <textarea class="form-control mt-2" id="reviewText" placeholder="เขียนรีวิวของคุณ"></textarea>
+                        <input type="number" id="rating" class="form-control mt-2" placeholder="ให้ดาว (1-5)" min="1" max="5">
+                        <button class="btn btn-success mt-2" onclick="addFoodReview(1)">เพิ่มรีวิว</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <a href="javascript:void(0);" onclick="toggleReviews(2)">
+                    <img src="assets/v.jpg" class="card-img-top" alt="ข้าวผัดหมูกรอบ">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title" onclick="toggleReviews(2)">ข้าวผัดหมูกรอบ</h5>
+                    <p class="card-text">ข้าวผัดหมูกรอบอร่อย</p>
+                </div>
+                <div class="reviews" id="food2" style="display: none;">
+                    <h6>รีวิวจากลูกค้า</h6>
+                    <div class="review">
+                        <p>⭐⭐⭐⭐</p>
+                        <p>รสชาติเยี่ยม!</p>
+                    </div>
+                    <div class="review">
+                        <p>⭐⭐⭐⭐</p>
+                        <p>อร่อยมากค่ะ แต่ข้าวเหนียวแฉะไปหน่อย</p>
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="reviewName2" placeholder="ชื่อผู้รีวิว">
+                        <textarea class="form-control mt-2" id="reviewText2" placeholder="เขียนรีวิวของคุณ"></textarea>
+                        <input type="number" id="rating2" class="form-control mt-2" placeholder="ให้ดาว (1-5)" min="1" max="5">
+                        <button class="btn btn-success mt-2" onclick="addFoodReview(2)">เพิ่มรีวิว</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="mt-5">เพิ่มเมนูพิเศษจากผู้ใช้</h2>
+    <div class="mb-3">
+        <input type="text" id="customMenuName" class="form-control" placeholder="ชื่อเมนู">
+        <textarea id="customMenuDesc" class="form-control mt-2" placeholder="คำอธิบายเมนู"></textarea>
+        <input type="file" id="customMenuImage" class="form-control mt-2">
+        <button class="btn btn-primary mt-2" onclick="addCustomMenu()">เพิ่มเมนู</button>
+    </div>
+
+    <div class="row" id="customMenuList">
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="javaweb.js"></script>
+<script>
+    function toggleReviews(foodId) {
+        var reviewSection = document.getElementById('food' + foodId);
+        if (reviewSection.style.display === 'none') {
+            reviewSection.style.display = 'block';
+        } else {
+            reviewSection.style.display = 'none';
+        }
+    }
+    function addFoodReview(foodId) {
+        var name = document.getElementById('reviewName' + foodId).value;
+        var text = document.getElementById('reviewText' + foodId).value;
+        var rating = document.getElementById('rating' + foodId).value;
+    
+        if (name && text && rating) {
+            var newReview = document.createElement('div');
+            newReview.classList.add('review');
+            newReview.innerHTML = `
+                <p>⭐⭐⭐⭐⭐</p>
+                <p>${text}</p>
+            `;
+            document.getElementById('food' + foodId).appendChild(newReview);
+        } else {
+            alert("กรุณากรอกข้อมูลให้ครบ");
+        }
+    }
+    </script>
+</body>
+</html>

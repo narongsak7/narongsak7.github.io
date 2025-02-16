@@ -41,7 +41,7 @@ $(document).ready(function () {
           setTimeout(() => {
               let heart = document.createElement("div");
               heart.className = type;
-              heart.innerHTML = "❤️"; // หัวใจปกติ
+              heart.innerHTML = "❤️"; 
               heart.style.left = `${Math.random() * 100}vw`;
               heart.style.animationDuration = `${Math.random() * 2 + 1}s`;
               document.body.appendChild(heart);
