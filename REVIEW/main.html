@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hybrid Review System</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            background-color: #f8f9fa; 
+            text-align: center;
+        }
+        .container { 
+            max-width: 600px; 
+            margin: auto; 
+            padding: 20px; 
+            background: white; 
+            border-radius: 10px; 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 { 
+            color: #333;
+        }
+        textarea, input, select, button { 
+            width: 100%; 
+            margin-top: 10px; 
+            padding: 10px; 
+            border-radius: 5px; 
+            border: 1px solid #ddd; 
+            font-size: 16px;
+        }
+        button {
+            background: #E37a58;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #F7d0b3;
+        }
+        .stars { 
+            display: flex; 
+            justify-content: center; 
+            cursor: pointer; 
+            margin-top: 10px;
+        }
+        .stars span { 
+            font-size: 30px; 
+            padding: 5px; 
+            color: gray; 
+            transition: 0.3s;
+        }
+        .stars span.active { 
+            color: gold; 
+            transform: scale(1.2);
+        }
+        .preview-img {
+            width: 100px; 
+            margin-top: 10px; 
+            display: none;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        ul li {
+            margin-top: 10px;
+        }
+        ul li a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>📌 Review a Restaurant</h2>
+        <label for="restaurant">Choose a restaurant:</label>
+        <select id="restaurant">
+            <option value="A">Restaurant A</option>
+            <option value="B">Restaurant B</option>
+            <option value="C">Restaurant C</option>
+            <option value="Vidya">Vidya</option>
+        </select>
+
+        <input type="text" id="customRestaurant" placeholder="Enter restaurant name (Optional)">
+        <input type="text" id="food" placeholder="Enter food name">
+        <textarea id="review" placeholder="Write your review..."></textarea>
+
+        <div class="stars" id="starRating">
+            <span data-value="1">★</span>
+            <span data-value="2">★</span>
+            <span data-value="3">★</span>
+            <span data-value="4">★</span>
+            <span data-value="5">★</span>
+        </div>
+
+        <input type="file" id="imageUpload" accept="image/*">
+        <img id="previewImg" class="preview-img">
+
+        <button onclick="submitReview()">✅ Submit Review</button>
+        <button onclick="goHome()"><i class="fas fa-home"></i> Home</button>
+
+        <h3>📌 View Reviews:</h3>
+        <ul>
+            <li><a href="reviewA.html?restaurant=A">Restaurant A</a></li>
+            <li><a href="reviewB.html?restaurant=B">Restaurant B</a></li>
+            <li><a href="reviewC.html?restaurant=C">Restaurant C</a></li>
+            <li><a href="reviewvidya.html?restaurant=Vidya">Vidya</a></li>
+        </ul>
+    </div>
+
+    <script>
+        let selectedRating = 0;
+
+        // ระบบให้คะแนนดาว
+        document.querySelectorAll("#starRating span").forEach(star => {
+            star.addEventListener("click", function () {
+                selectedRating = this.getAttribute("data-value");
+                document.querySelectorAll("#starRating span").forEach(s => s.classList.remove("active"));
+                for (let i = 0; i < selectedRating; i++) {
+                    document.querySelectorAll("#starRating span")[i].classList.add("active");
+                }
+            });
+        });
+
+        // แสดงภาพตัวอย่าง
+        document.getElementById("imageUpload").addEventListener("change", function (event) {
+            let file = event.target.files[0];
+            if (file) {
+                let reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById("previewImg").src = e.target.result;
+                    document.getElementById("previewImg").style.display = "block";
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function submitReview() {
+            let selectedRestaurant = document.getElementById("restaurant").value;
+            let customRestaurant = document.getElementById("customRestaurant").value.trim();
+            let restaurant = customRestaurant || selectedRestaurant;
+
+            let food = document.getElementById("food").value;
+            let review = document.getElementById("review").value;
+            let imageFile = document.getElementById("imageUpload").files[0];
+
+            if (!restaurant || !food || !selectedRating || !review) {
+                alert("🚨 Please fill all fields");
+                return;
+            }
+
+            let imageData = "";
+            if (imageFile) {
+                let reader = new FileReader();
+                reader.onload = function (e) {
+                    imageData = e.target.result;
+                    saveReview(restaurant, { food, rating: selectedRating, review, image: imageData });
+                };
+                reader.readAsDataURL(imageFile);
+            } else {
+                saveReview(restaurant, { food, rating: selectedRating, review, image: "" });
+            }
+        }
+
+        function saveReview(restaurant, reviewData) {
+            let storedReviews = JSON.parse(localStorage.getItem(restaurant)) || [];
+            storedReviews.push(reviewData);
+            localStorage.setItem(restaurant, JSON.stringify(storedReviews));
+            alert(`✅ Review for ${restaurant} submitted successfully!`);
+            location.reload();
+        }
+        function goHome() {
+            window.location.href = "/HOME/indexH.html";
+        }
+    </script>
+</body>
+</html>
