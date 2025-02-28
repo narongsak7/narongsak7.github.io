@@ -4,112 +4,79 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restaurant Reviews</title>
+    <title>Restaurant A Reviews</title>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
     <style>
-        body { 
-            font-family: Arial, sans-serif; 
-            background-color: #f8f9fa; 
-            text-align: center;
-        }
-        .container { 
-            max-width: 600px; 
-            margin: auto; 
-            padding: 20px; 
-            background: white; 
-            border-radius: 10px; 
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h2 {
-            color: #333;
-        }
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-        li {
-            background: #fff;
-            border: 1px solid #ddd;
-            padding: 15px;
-            margin-top: 10px;
-            border-radius: 5px;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-            text-align: left;
-        }
-        .stars {
-            color: gold;
-            font-size: 18px;
-        }
-        img {
-            max-width: 100px;
-            border-radius: 8px;
-            margin-top: 10px;
-            display: block;
-            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
-        }
-        button {
-        background: #E37a58;
-        color: white;
-        border: none;
-        padding: 10px;
-        font-size: 18px;
-        width: 100%;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: 0.3s;
-        margin-top: 10px; /* เพิ่มระยะห่างระหว่างปุ่ม */
-        display: block; /* จัดให้ปุ่มเรียงลงมาคนละบรรทัด */
-        }
-        button:hover {
-            background: #F7d0b3;
-        }
+        body { font-family: Arial, sans-serif; background-color: #f8f9fa; text-align: center; }
+        .container { max-width: 600px; margin: auto; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+        h2 { color: #333; }
+        ul { list-style: none; padding: 0; }
+        li { background: #fff; border: 1px solid #ddd; padding: 15px; margin-top: 10px; border-radius: 5px; text-align: left; }
+        .stars { color: gold; font-size: 18px; }
+        img { max-width: 100px; border-radius: 8px; margin-top: 10px; display: block; box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2); }
+        button { background: #E37a58; color: white; border: none; padding: 10px; font-size: 18px; width: 100%; border-radius: 5px; cursor: pointer; transition: 0.3s; margin-top: 10px; }
+        button:hover { background: #F7d0b3; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2 id="restaurantTitle"></h2>
+        <h2 id="restaurantTitle">📌 รีวิวของโรงอาหาร A</h2>
         <ul id="reviewList"></ul>
         <button onclick="goBack()">⬅️ กลับหน้าเมนู</button>
         <button onclick="goHome()"><i class="fas fa-home"></i> Home</button>
-
     </div>
 
     <script>
-        function getRestaurantName() {
-            return new URLSearchParams(window.location.search).get("restaurant") || "A";
-        }
+        // 🔹 ตั้งค่า Firebase
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
 
         function loadReviews() {
-            let restaurant = getRestaurantName();
-            document.getElementById("restaurantTitle").innerText = `📌 รีวิวของโรงอาหาร ${restaurant}`;
-
-            let reviews = JSON.parse(localStorage.getItem(restaurant)) || [];
+            let restaurant = "A"; // 🔹 แสดงเฉพาะรีวิวของ Restaurant A
             let reviewList = document.getElementById("reviewList");
-            reviewList.innerHTML = "";
+            reviewList.innerHTML = "<p>กำลังโหลดข้อมูล...</p>";
 
-            if (reviews.length === 0) {
-                reviewList.innerHTML = "<p>❌ No reviews yet.</p>";
-                return;
-            }
+            // 🔹 โหลดข้อมูลแบบเรียลไทม์
+            db.collection("reviews").where("restaurant", "==", restaurant).orderBy("timestamp", "desc")
+                .onSnapshot((querySnapshot) => { 
+                    let reviews = [];
+                    querySnapshot.forEach(doc => reviews.push(doc.data()));
 
-            reviews.forEach(r => {
-                let li = document.createElement("li");
-                li.innerHTML = `<strong>🍽️ ${r.food}</strong> <br> 
-                                <span class="stars">${"★".repeat(r.rating)}</span> <br>
-                                ${r.review}`;
-
-                if (r.image) {
-                    let img = document.createElement("img");
-                    img.src = r.image;
-                    img.alt = "Review Image";
-                    li.appendChild(img);
-                }
-
-                reviewList.appendChild(li);
-            });
+                    reviewList.innerHTML = "";
+                    if (reviews.length === 0) {
+                        reviewList.innerHTML = "<p>❌ ไม่มีรีวิว</p>";
+                    } else {
+                        reviews.forEach(r => {
+                            let li = document.createElement("li");
+                            li.innerHTML = `<strong>🍽️ ${r.food}</strong> <br> 
+                                            <span class="stars">${"★".repeat(r.rating)}</span> <br>
+                                            ${r.review}`;
+                            if (r.image) {
+                                let img = document.createElement("img");
+                                img.src = r.image;
+                                img.alt = "Review Image";
+                                li.appendChild(img);
+                            }
+                            reviewList.appendChild(li);
+                        });
+                    }
+                }, (error) => {
+                    console.error("Error fetching reviews: ", error);
+                    reviewList.innerHTML = "<p>❌ ไม่สามารถโหลดข้อมูลได้</p>";
+                });
         }
 
         function goBack() {
-            window.location.href = "main.html"; // กลับไปที่หน้าเมนูหลัก
+            window.location.href = "main.html";
         }
         function goHome() {
             window.location.href = "/HOME/indexH.html";
