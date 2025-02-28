@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>วงล้อสุ่มอาหาร</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('bc.jpg');
+            background-size: cover;
+            background-position: center center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 10px;
+            position: relative;
+            flex-direction: column;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+        }
+
+        .title {
+            background: #FFF8E1;
+            padding: 10px 20px;
+            font-size: 30px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .wheel-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        canvas {
+            border-radius: 50%;
+            border: 10px solid #FCF6EA;
+            background-color: #E37A58;
+            width: 300px;
+            height: 300px;
+        }
+
+        .spin-button {
+            background: #E57358;
+            color: white;
+            font-size: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .result {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #E57358;
+            border: 5px solid #E57358;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 300px;
+            font-weight: bold;
+            z-index: 10;
+            margin-top: 0;
+            transition: top 1s ease;
+        }
+
+        #resultText {
+            color: white;
+            font-size: 24px;
+            margin-top: 10px;
+        }
+
+        #resultImage {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 300px;
+            left: 50%;
+            transform: translateX(-50%) rotate(180deg);
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 20px solid #E2F1FA;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #E37A58;
+            color: #FFFFFF;
+            font-size: 24px;
+            font-weight: bold;
+            padding: 10px 20px;
+            border: 2px solid #E37A58;
+            border-radius: 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .back-button .arrow-left {
+            font-size: 50px;
+            font-weight: bold;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">กินไหนดีนะ</div>
+        <div class="wheel-container">
+            <canvas id="wheelCanvas" width="300" height="300"></canvas>
+            <div class="arrow" id="arrow"></div>
+        </div>
+        <button class="spin-button" onclick="spinWheel()">สุ่มเลย</button>
+        <div class="result" id="resultBox">
+            <img id="resultImage" src="" alt="รูปสถานที่">
+            <div id="resultText"></div>
+        </div>
+    </div>
+
+    <button class="back-button" onclick="goBack()">
+        <div class="arrow-left">⬅</div>
+    </button>
+
+    <script>
+        const options = [
+            { name: "โรงA คณะวิศวะ", image: "a.jpg" },
+            { name: "โรงB คณะวิศวะ", image: "b.jpg" },
+            { name: "โรงC คณะวิศวะ", image: "c.jpg" },
+            { name: "คณะวิทยา", image: "sci.jpg" }
+        ];
+
+        const canvas = document.getElementById("wheelCanvas");
+        const ctx = canvas.getContext("2d");
+        const radius = canvas.width / 2;
+        const angle = Math.PI * 2 / options.length;
+
+        let rotation = 0;
+        let spinAngleStart = 50;
+        let spinTime = 0;
+        let spinTimeTotal = 5;
+        let deceleration = 0.98;
+        let isSpinning = false;
+
+        const spinSound = new Audio('spin-sound.mp3');
+        const stopSound = new Audio('stop-sound.mp3');
+
+        function drawWheel() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.save();
+            ctx.translate(radius, radius);
+
+            options.forEach((option, index) => {
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.arc(0, 0, radius, angle * index, angle * (index + 1));
+                ctx.fillStyle = index % 2 === 0 ? "#E37A58" : "#F7D0B3";
+                ctx.fill();
+
+                ctx.fillStyle = "#fff";
+                ctx.font = "bold 16px Arial";
+                ctx.textAlign = "center";
+                ctx.textBaseline = "middle";
+                ctx.fillText(option.name, radius / 1.5 * Math.cos(angle * index + angle / 2), radius / 1.5 * Math.sin(angle * index + angle / 2));
+            });
+
+            ctx.restore();
+        }
+
+        function spinWheel() {
+            if (isSpinning) return;
+            isSpinning = true;
+
+            document.getElementById("resultBox").style.display = "none";
+
+            spinTime = 0;
+            spinAngleStart = Math.random() * 20 + 20;
+            let spinDuration = 5 * 60;
+
+            spinSound.play();
+
+            function rotateWheel() {
+                spinTime++;
+                spinAngleStart *= deceleration;
+
+                if (spinTime >= spinDuration) {
+                    stopWheel();
+                } else {
+                    rotation += spinAngleStart;
+                    canvas.style.transform = `rotate(${rotation}deg)`;
+                    requestAnimationFrame(rotateWheel);
+                }
+            }
+
+            rotateWheel();
+        }
+
+        function stopWheel() {
+            const adjustedRotation = rotation % (Math.PI * 2);
+            let selectedIndex = Math.floor((Math.PI * 2 - adjustedRotation) / angle);
+            selectedIndex = selectedIndex % options.length;
+
+            stopSound.play();
+
+            document.getElementById("resultText").innerText = options[selectedIndex].name;
+
+            const resultImage = document.getElementById("resultImage");
+            resultImage.src = options[selectedIndex].image;
+
+            resultImage.onload = function() {
+                document.getElementById("resultBox").style.display = "block";
+                document.getElementById("resultBox").style.top = "50%";
+
+                setTimeout(function() {
+                    document.getElementById("resultBox").style.display = "none";
+                }, 5000);
+            };
+
+            isSpinning = false;
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+
+        drawWheel();
+    </script>
+</body>
+</html>

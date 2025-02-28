@@ -1,0 +1,196 @@
+/* ตั้งค่าสไตล์หลัก */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7d0b3;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+  
+  /* คอนเทนเนอร์หลักของการ์ด */
+  .data-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  /* สไตล์ของการ์ด */
+  .card {
+    width: 280px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+    text-align: left;
+    transition: transform 0.3s ease-in-out;
+  }
+  h2 {
+    color: rgb(230, 136, 81);
+    text-shadow: 2px 2px 4px rgb(255, 255, 255); /* ขอบสีดำแบบนูน */
+  }
+  
+  
+  .card:hover {
+    transform: scale(1.05);
+  }
+  
+  /* รูปภาพ */
+  .card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+  
+  /* ส่วนเนื้อหาของการ์ด */
+  .card-content {
+    padding: 15px;
+  }
+  
+  .card h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .card p {
+    font-size: 14px;
+    color: #777;
+    margin: 8px 0;
+  }
+  
+  /* ปุ่มลิงก์ */
+  .card a {
+    display: block;
+    text-align: center;
+    background: #e37a58;
+    color: white;
+    text-decoration: none;
+    padding: 8px;
+    margin-top: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  
+  .card a:hover {
+    background: #e37a58;
+  }
+  /* คอนเทนเนอร์หลักของการ์ด */
+.data-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+  }
+  /* ปรับขนาดของ card-content */
+.card-content {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+  
+  /* ปรับขนาดของปุ่มให้เท่ากัน */
+  .card a {
+    display: block;
+    text-align: center;
+    background: #e37a58;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    margin-top: auto; /* ดันปุ่มให้อยู่ด้านล่าง */
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  
+  /* ปรับให้ปุ่มเท่ากันทุกการ์ด */
+  .card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .card-content {
+    flex-grow: 1; /* ทำให้เนื้อหาขยายได้ */
+  }
+  /* Navbar */
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    background-color: #e37a58;
+    color: white;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+  }
+  
+  /* โลโก้ */
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  /* Hamburger Menu */
+  .menu-toggle {
+    position: absolute;
+    left: 20px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px; /* ซ่อนเมนูไว้ก่อน */
+    width: 250px;
+    height: 100%;
+    background-color: #333;
+    color: white;
+    padding-top: 60px;
+    transition: left 0.3s ease-in-out;
+  }
+  
+  /* สไตล์ของเมนู */
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar ul li {
+    padding: 15px;
+    text-align: center;
+  }
+  
+  .sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
+  }
+  
+  .sidebar ul li:hover {
+    background: #555;
+  }
+  .canteen-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 20px;
+    padding: 10px;
+    color: #333;
+    border-radius: 8px;
+    display: inline-block;
+}
+
+
+  
+  

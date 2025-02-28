@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Chat</title>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+</head>
+<body>
+    <h2>แชทเรียลไทม์</h2>
+    <div id="chat-box" style="border: 1px solid black; height: 300px; overflow-y: auto;"></div>
+    <input type="text" id="message" placeholder="พิมพ์ข้อความ...">
+    <button onclick="sendMessage()">ส่ง</button>
+
+    <script type="module">
+        // Import SDKs ที่ต้องใช้
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-analytics.js";
+        import { getDatabase, ref, push, onChildAdded } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js";
+      
+        // Firebase Configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyCwkvViQ3MXpyuPb3DtoZsG_DiFUnz5znc",
+          authDomain: "chat-51bf3.firebaseapp.com",
+          databaseURL: "https://chat-51bf3-default-rtdb.asia-southeast1.firebasedatabase.app",
+          projectId: "chat-51bf3",
+          storageBucket: "chat-51bf3.firebasestorage.app",
+          messagingSenderId: "92021516051",
+          appId: "1:92021516051:web:fe5f9176a26d4dd6451ce6",
+          measurementId: "G-MNW49NG2XZ"
+        };
+      
+        // ✅ Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const db = getDatabase(app); // 🔥 เพิ่ม Database เข้าไป
+      
+        // ✅ ฟังก์ชันส่งข้อความ
+        function sendMessage() {
+          const messageInput = document.getElementById("message");
+          const message = messageInput.value;
+          if (message.trim()) {
+            const time = new Date().toLocaleTimeString("th-TH");
+            push(ref(db, "messages"), { text: message, time: time }); // 🔥 ส่งข้อความไปที่ Firebase
+            messageInput.value = ""; // เคลียร์ช่องข้อความ
+          }
+        }
+      
+        // ✅ โหลดข้อความเรียลไทม์
+        const chatBox = document.getElementById("chat-box");
+        onChildAdded(ref(db, "messages"), (snapshot) => {
+          const data = snapshot.val();
+          const msgElement = document.createElement("p");
+          msgElement.textContent = `[${data.time}] ${data.text}`;
+          chatBox.appendChild(msgElement);
+          chatBox.scrollTop = chatBox.scrollHeight; // เลื่อนลงอัตโนมัติ
+        });
+      </script>
+      
+</body>
+</html>

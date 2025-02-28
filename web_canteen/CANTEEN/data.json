@@ -1,0 +1,99 @@
+{
+  "title": "โรงอาหารคณะวิทยาศาสตร์",
+  "navbarLinks": [
+    {
+      "label": "หน้าแรก",
+      "url": "#"
+    },
+    {
+      "label": "วิศวะ",
+      "url": "#"
+    }
+  ],
+  "cards": [
+    {
+      "imgUrl": "https://www.maggi.co.th/sites/default/files/styles/home_stage_944_531/public/srh_recipes/6b0473cc1841f2157e29700a56a5b8f0.jpg?h=e13068ac&itok=XRfxVSBQ",
+      "title": "ผัดกระเพรา",
+      "category": "อาหารจานเดียว",
+      "detail": "ผัดกระเพรารสชาติเผ็ดร้อน เสิร์ฟพร้อมข้าวสวยและไข่ดาว",
+      "newsUrl": "review_pad_krapao.html"
+    },
+    {
+      "imgUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUobgm-WUv-uZNeOyONKRlHs4tr1X2890NvQ&s",
+      "title": "หมูทอดกระเทียม",
+      "category": "อาหารจานเดียว",
+      "detail": "หมูทอดกระเทียมพริกไทยหอมกรุ่น กรอบนอกนุ่มใน",
+      "newsUrl": "review_moo_tod.html"
+    },
+    {
+      "imgUrl": "https://www.maggi.co.th/sites/default/files/styles/home_stage_944_531/public/srh_recipes/a1b6cab9710d963ab0d30f62e5d3a88a.jpeg?h=b6717701&itok=ygShKDIs",
+      "title": "ข้าวผัดหมู",
+      "category": "อาหารจานเดียว",
+      "detail": "ข้าวผัดหมูหอมๆ ใส่ไข่และผักหลากหลาย",
+      "newsUrl": "review_khao_pad.html"
+    },
+    {
+      "imgUrl": "https://yalamarketplace.com/upload/1615340846439.png",
+      "title": "ข้าวไข่เจียวหมูสับ",
+      "category": "อาหารจานเดียว",
+      "detail": "ไข่เจียวหมูสับฟูกรอบ เสิร์ฟพร้อมซอสพริก",
+      "newsUrl": "review_khai_jiew.html"
+    },
+    {
+      "imgUrl": "https://static.thairath.co.th/media/4DQpjUtzLUwmJZZSEmAUm74bI2EL8Sb34rOSLQkKjXQF.jpg",
+      "title": "ข้าวมันไก่",
+      "category": "อาหารจานเดียว",
+      "detail": "ข้าวมันไก่หอมๆ พร้อมน้ำจิ้มรสเด็ด",
+      "newsUrl": "review_khao_man_gai.html"
+    },
+    {
+      "imgUrl": "https://storage.ftiebusiness.com/c1/Product_47949_293555943_fullsize.jpg",
+      "title": "ผัดผงกะหรี่ทะเล",
+      "category": "อาหารทะเล",
+      "detail": "ผัดผงกะหรี่ทะเลรสเข้มข้น กุ้ง ปลาหมึกสด",
+      "newsUrl": "review_pad_pong.html"
+    },
+    {
+      "imgUrl": "https://www.nestleprofessional.co.th/sites/default/files/2024-10/%E0%B8%AA%E0%B8%B9%E0%B8%95%E0%B8%A3%E0%B8%81%E0%B9%8B%E0%B8%A7%E0%B8%A2%E0%B9%80%E0%B8%95%E0%B8%B5%E0%B9%8B%E0%B8%A2%E0%B8%A7%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B8%99%E0%B9%89%E0%B8%B3%E0%B9%83%E0%B8%AA.jpg",
+      "title": "ก๋วยเตี๋ยวน้ำใส",
+      "category": "ก๋วยเตี๋ยว",
+      "detail": "เส้นนุ่มๆ ในน้ำซุปหอมกรุ่น พร้อมลูกชิ้นหมูเด้งๆ",
+      "newsUrl": "review_noodle.html"
+    },
+    {
+      "imgUrl": "https://images.deliveryhero.io/image/fd-th/LH/ltld-listing.jpg",
+      "title": "ข้าวหมูแดง",
+      "category": "อาหารจานเดียว",
+      "detail": "ข้าวหมูแดงราดน้ำซอสเข้มข้น พร้อมไข่ต้ม",
+      "newsUrl": "review_khao_moo_daeng.html"
+    },
+    {
+      "imgUrl": "https://api2.krua.co/wp-content/uploads/2021/04/RT1641_ImageBanner_1140x507.jpg",
+      "title": "ผัดกะเพราหมูกรอบ",
+      "category": "อาหารจานเดียว",
+      "detail": "หมูกรอบทอดกรอบ ผัดกับใบกะเพราและพริกสด",
+      "newsUrl": "review_pad_krapao_krob.html"
+    },
+    {
+      "imgUrl": "https://www.ajinomoto.co.th/storage/photos/shares/Recipe/Menu/3-12clearsoupwithseaweed/61a8f1070a217.jpeg",
+      "title": "ต้มจืดเต้าหู้หมูสับ",
+      "category": "ซุป",
+      "detail": "ซุปร้อนๆ ใส่เต้าหู้ไข่และหมูสับเพื่อสุขภาพ",
+      "newsUrl": "review_tom_jud.html"
+    },
+    {
+      "imgUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyUUSyjQssJUY4Rw6uI8nqznZJiKfwofzhKw&s",
+      "title": "ผัดซีอิ๊วหมู",
+      "category": "ก๋วยเตี๋ยว",
+      "detail": "เส้นใหญ่เหนียวนุ่ม ผัดกับหมูและไข่ ราดซอสหอมอร่อย",
+      "newsUrl": "review_pad_see_eiw.html"
+    },
+    {
+      "imgUrl": "https://rruethai.com/storage/images/food-menu/1648492928-732.jpg",
+      "title": "สุกี้หมู",
+      "category": "สุกี้",
+      "detail": "สุกี้แห้งหมู ใส่วุ้นเส้น ผักสด และน้ำจิ้มรสเด็ด",
+      "newsUrl": "review_suki.html"
+    }
+  ]
+}

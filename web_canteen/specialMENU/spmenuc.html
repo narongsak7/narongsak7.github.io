@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Menu - Canteen C</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        h2 {
+            color: #333;
+        }
+        .menu-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+        }
+        .menu-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            text-align: left;
+        }
+        .menu-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .menu-card h3 {
+            margin: 10px 0;
+            color: #E37a58;
+        }
+        .menu-card p {
+            margin: 5px 0;
+            color: #555;
+        }
+        .menu-card .price {
+            font-weight: bold;
+            color: #28a745;
+        }
+        button {
+        background: #E37a58;
+        color: white;
+        border: none;
+        padding: 10px;
+        font-size: 18px;
+        width: 100%;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s;
+        margin-top: 10px; /* เพิ่มระยะห่างระหว่างปุ่ม */
+        display: block; /* จัดให้ปุ่มเรียงลงมาคนละบรรทัด */
+        }
+        button:hover {
+            background: #F7d0b3;
+        }
+    </style>
+</head>
+<body>
+    <h2>📌 Special Menu - Canteen C</h2>
+    <div class="menu-container" id="menuContainer"></div>
+    <button onclick="goBack()">⬅️ กลับหน้าเมนู</button>
+    <button onclick="goHome()"><i class="fas fa-home"></i> Home</button>
+
+    <script>
+        function loadMenus() {
+            let menus = JSON.parse(localStorage.getItem("specialMenus_c")) || [];
+            let menuContainer = document.getElementById("menuContainer");
+            menuContainer.innerHTML = "";
+
+            if (menus.length === 0) {
+                menuContainer.innerHTML = "<p>❌ No special menus available.</p>";
+                return;
+            }
+
+            menus.forEach(m => {
+                let card = document.createElement("div");
+                card.classList.add("menu-card");
+                card.innerHTML = `
+                    ${m.image ? `<img src="${m.image}" alt="Menu Image">` : ""}
+                    <h3>🍽️ ${m.name}</h3>
+                    <p>${m.details}</p>
+                    <p class="price">💰 Price: ${m.price} Baht</p>
+                `;
+                menuContainer.appendChild(card);
+            });
+        }
+        function goBack() {
+            window.location.href = "sp.html";
+        }
+        function goHome() {
+            window.location.href = "/HOME/indexH.html";
+        }
+
+        window.onload = loadMenus;
+    </script>
+</body>
+</html>

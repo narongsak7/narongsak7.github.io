@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Special Menu</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            background-color: #f8f9fa; 
+            text-align: center;
+        }
+        .container { 
+            max-width: 600px; 
+            margin: auto; 
+            padding: 20px; 
+            background: white; 
+            border-radius: 10px; 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 { 
+            color: #333;
+        }
+        textarea, input, select, button { 
+            width: 100%; 
+            margin-top: 10px; 
+            padding: 10px; 
+            border-radius: 5px; 
+            border: 1px solid #ddd; 
+            font-size: 16px;
+        }
+        button {
+            background: #E37a58;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #F7d0b3;
+        }
+        .preview-img {
+            width: 100px; 
+            margin-top: 10px; 
+            display: none;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        ul li {
+            margin-top: 10px;
+        }
+        ul li a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>📌 Add Special Menu</h2>
+        <select id="canteenSelect">
+            <option value="a">Canteen A</option>
+            <option value="b">Canteen B</option>
+            <option value="c">Canteen C</option>
+            <option value="vidya">Canteen Vidya</option>
+        </select>
+        <input type="text" id="menuName" placeholder="Enter menu name">
+        <textarea id="menuDetails" placeholder="Enter menu details..."></textarea>
+        <input type="number" id="menuPrice" placeholder="Enter price">
+        <input type="file" id="imageUpload" accept="image/*">
+        <img id="previewImg" class="preview-img">
+        <button onclick="addMenu()">✅ Add Menu</button>
+        <button onclick="goHome()"><i class="fas fa-home"></i> Home</button>
+
+        <h3>📌 View Special Menu</h3>
+        <ul>
+            <li><a href="spmenua.html?restaurant=A">Restaurant A</a></li>
+            <li><a href="spmenub.html?restaurant=B">Restaurant B</a></li>
+            <li><a href="spmenuc.html?restaurant=C">Restaurant C</a></li>
+            <li><a href="spmenuvidya.html?restaurant=Vidya">Vidya</a></li>
+        </ul>
+    </div>
+
+    <script>
+        document.getElementById("imageUpload").addEventListener("change", function (event) {
+            let file = event.target.files[0];
+            if (file) {
+                let reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById("previewImg").src = e.target.result;
+                    document.getElementById("previewImg").style.display = "block";
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function addMenu() {
+            let canteen = document.getElementById("canteenSelect").value;
+            let name = document.getElementById("menuName").value.trim();
+            let details = document.getElementById("menuDetails").value.trim();
+            let price = document.getElementById("menuPrice").value.trim();
+            let imageFile = document.getElementById("imageUpload").files[0];
+            
+            if (!name || !details || !price) {
+                alert("🚨 Please fill all fields");
+                return;
+            }
+
+            let imageData = "";
+            if (imageFile) {
+                let reader = new FileReader();
+                reader.onload = function (e) {
+                    imageData = e.target.result;
+                    saveMenu(canteen, { name, details, price, image: imageData });
+                };
+                reader.readAsDataURL(imageFile);
+            } else {
+                saveMenu(canteen, { name, details, price, image: "" });
+            }
+        }
+
+        function saveMenu(canteen, menuData) {
+            let storedMenus = JSON.parse(localStorage.getItem("specialMenus_" + canteen)) || [];
+            storedMenus.push(menuData);
+            localStorage.setItem("specialMenus_" + canteen, JSON.stringify(storedMenus));
+            alert("✅ Special menu added successfully!");
+            window.location.href = "spmenu" + canteen + ".html";
+        }
+        function goHome() {
+            window.location.href = "/HOME/indexH.html";
+        }
+    </script>
+</body>
+</html>
