@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รีวิวโรงอาหาร C</title>
+    <link rel="stylesheet" href="/review-app/style.css">
+
+    <script>
+        const binId = "67c3486bad19ca34f814ab07 ";  // 🔥 ใส่ Bin ID ของคุณ
+        const apiKey = "$2a$10$xxsBsxICs7ST0gmrZfxnAum/ZeB2303vLfUVwuYCEPy2k8xIz0Efe"; // 🔥 ใส่ API Key ของคุณ
+        const apiUrl = `https://api.jsonbin.io/v3/b/${binId}`;
+
+        // โหลดรีวิวจาก JSONBin เฉพาะ "โรงอาหาร C"
+        async function loadReviews() {
+            const response = await fetch(apiUrl, { headers: { "X-Master-Key": apiKey } });
+            const data = await response.json();
+            const reviews = data.record.reviews.filter(r => r.โรงอาหาร === "โรงอาหาร C");
+            displayReviews(reviews);
+        }
+
+        // แสดงรีวิวเป็นการ์ด
+        function displayReviews(reviews) {
+            const reviewContainer = document.getElementById("reviewContainer");
+            reviews.forEach(review => {
+                let card = document.createElement("div");
+                card.className = "review-card";
+                card.innerHTML = `
+                    <img src="${review.รูปภาพ}" alt="รูปอาหาร">
+                    <h3>${review.ชื่ออาหาร}</h3>
+                    <p><b>ร้าน:</b> ${review.ร้านอาหาร}</p>
+                    <p>${review.รีวิว}</p>
+                    <p class="rating">⭐ ${"⭐".repeat(review.คะแนน)}</p>
+                `;
+                reviewContainer.appendChild(card);
+            });
+        }
+
+        function toggleMenu() {
+            const mobileNav = document.getElementById("mobileNav");
+            mobileNav.style.display = (mobileNav.style.display === "flex") ? "none" : "flex";
+        }
+
+    </script>
+</head>
+<body onload="loadReviews()">
+    <div class="navbar">
+        <button class="hamburger" onclick="toggleMenu()">☰</button>
+        <div class="nav-links">
+            <a href="special_menu.html">Special Menu</a>
+            <a href="review_a.html">โรงอาหาร A</a>
+            <a href="review_b.html">โรงอาหาร B</a>
+            <a href="review_c.html">โรงอาหาร C</a>
+        </div>
+        <div class="mobile-nav" id="mobileNav">
+            <a href="special_menu.html">Special Menu</a>
+            <a href="review_a.html">โรงอาหาร A</a>
+            <a href="review_b.html">โรงอาหาร B</a>
+            <a href="review_c.html">โรงอาหาร C</a>
+        </div>
+    </div>
+
+    <h2>รีวิวโรงอาหาร C</h2>
+
+    <div class="review-container" id="reviewContainer"></div>
+
+</body>
+</html>
+`

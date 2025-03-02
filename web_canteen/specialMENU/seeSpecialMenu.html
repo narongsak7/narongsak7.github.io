@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Menu</title>
+    <link rel="stylesheet" href="/review-app/style.css">
+    
+    <script>
+        const binId = "67c3486bad19ca34f814ab07";  // 🔥 ใส่ Bin ID ของคุณ
+        const apiKey = "$2a$10$xxsBsxICs7ST0gmrZfxnAum/ZeB2303vLfUVwuYCEPy2k8xIz0Efe"; // 🔥 ใส่ API Key ของคุณ
+        const apiUrl = `https://api.jsonbin.io/v3/b/${binId}`;
+
+        // โหลดรีวิวจาก JSONBin
+        async function loadReviews() {
+            try {
+                const response = await fetch(apiUrl, { headers: { "X-Master-Key": apiKey } });
+                const data = await response.json();
+                const reviews = data.record.reviews;
+                displayReviews(reviews);
+            } catch (error) {
+                console.error("เกิดข้อผิดพลาดในการโหลดรีวิว:", error);
+            }
+        }
+
+        // แสดงรีวิวเป็นการ์ด
+        function displayReviews(reviews) {
+            const reviewContainer = document.getElementById("reviewContainer");
+            reviewContainer.innerHTML = ""; // ล้างของเก่า
+
+            reviews.forEach(review => {
+                const reviewCard = document.createElement("div");
+                reviewCard.classList.add("review-card");
+                reviewCard.innerHTML = `
+                    <img src="${review.รูปภาพ}" alt="${review.ชื่ออาหาร}">
+                    <h3>${review.ชื่ออาหาร}</h3>
+                    <p><strong>โรงอาหาร:</strong> ${review.โรงอาหาร}</p>
+                    <p><strong>ร้าน:</strong> ${review.ร้านอาหาร}</p>
+                    <p>${review.รีวิว}</p>
+                    <p class="rating">⭐ ${"⭐".repeat(review.คะแนน)}</p>
+                `;
+                reviewContainer.appendChild(reviewCard);
+            });
+        }
+
+        // Toggle Hamburger Menu
+        function toggleMenu() {
+            const mobileNav = document.getElementById("mobileNav");
+            mobileNav.style.display = (mobileNav.style.display === "flex") ? "none" : "flex";
+        }
+    </script>
+</head>
+<body onload="loadReviews()">
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <button class="hamburger" onclick="toggleMenu()">☰</button>
+        <div class="nav-links">
+            <a href="special_menu.html">Special Menu</a>
+            <a href="review_a.html">โรงอาหาร A</a>
+            <a href="review_b.html">โรงอาหาร B</a>
+            <a href="review_c.html">โรงอาหาร C</a>
+        </div>
+        <div class="mobile-nav" id="mobileNav">
+            <a href="special_menu.html">Special Menu</a>
+            <a href="review_a.html">โรงอาหาร A</a>
+            <a href="review_b.html">โรงอาหาร B</a>
+            <a href="review_c.html">โรงอาหาร C</a>
+        </div>
+    </div>
+
+    <h2>Special Menu - รีวิวทั้งหมด</h2>
+
+    <!-- คอนเทนเนอร์สำหรับการ์ด -->
+    <div class="review-container" id="reviewContainer"></div>
+
+</body>
+</html>

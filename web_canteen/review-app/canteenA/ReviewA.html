@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รีวิวโรงอาหาร A</title>
+    <link rel="stylesheet" href="/review-app/style.css">
+
+    <script>
+        const binId = "67c3486bad19ca34f814ab07";  // 🔥 ใส่ Bin ID ของคุณ
+        const apiKey = "$2a$10$xxsBsxICs7ST0gmrZfxnAum/ZeB2303vLfUVwuYCEPy2k8xIz0Efe"; // 🔥 ใส่ API Key ของคุณ
+        const apiUrl = `https://api.jsonbin.io/v3/b/${binId}`;
+    
+        async function loadReviews() {
+            try {
+                const response = await fetch(apiUrl, { headers: { "X-Master-Key": apiKey } });
+                const data = await response.json();
+                const reviews = data.record.reviews;
+                displayReviews(reviews);
+            } catch (error) {
+                console.error("เกิดข้อผิดพลาดในการโหลดรีวิว:", error);
+            }
+        }
+    
+    
+        async function addReview() {
+            const restaurant = document.getElementById("restaurant").value;
+            const dish = document.getElementById("dish").value;
+            const review = document.getElementById("review").value;
+            const rating = document.getElementById("rating").value;
+            const image = document.getElementById("image").value;
+            const messageBox = document.getElementById("message");
+    
+            if (!restaurant || !dish || !review || !rating || !image) {
+                messageBox.innerText = "⚠️ โปรดกรอกข้อมูลให้ครบถ้วน!";
+                messageBox.style.color = "red";
+                return;
+            }
+    
+            const newReview = {
+                "โรงอาหาร": "โรงอาหาร A",
+                "ร้านอาหาร": restaurant,
+                "ชื่ออาหาร": dish,
+                "รีวิว": review,
+                "คะแนน": parseInt(rating),
+                "รูปภาพ": image
+            };
+    
+            try {
+                const response = await fetch(apiUrl, { headers: { "X-Master-Key": apiKey } });
+                const data = await response.json();
+                const reviews = data.record.reviews;
+                reviews.push(newReview);
+    
+                await fetch(apiUrl, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-Master-Key": apiKey
+                    },
+                    body: JSON.stringify({ reviews })
+                });
+    
+                loadReviews(); 
+    
+                // ล้างค่าทั้งหมดในช่อง input
+                document.getElementById("restaurant").value = "";
+                document.getElementById("dish").value = "";
+                document.getElementById("review").value = "";
+                document.getElementById("rating").value = "";
+                document.getElementById("image").value = "";
+    
+                // แสดงข้อความแจ้งเตือน
+                messageBox.innerText = "✅ รีวิวเสร็จแล้ว!";
+                messageBox.style.color = "green";
+    
+                // ซ่อนข้อความหลังจาก 2 วินาที
+                setTimeout(() => {
+                    messageBox.innerText = "";
+                }, 2000);
+    
+            } catch (error) {
+                console.error("เกิดข้อผิดพลาดในการเพิ่มรีวิว:", error);
+                messageBox.innerText = "❌ มีบางอย่างผิดพลาด!";
+                messageBox.style.color = "red";
+            }
+        }
+        
+        function toggleMenu() {
+            const mobileNav = document.getElementById("mobileNav");
+            mobileNav.style.display = (mobileNav.style.display === "flex") ? "none" : "flex";
+        }
+    </script>
+    
+</head>
+<body onload="loadReviews()">
+
+    <div class="navbar">
+        <button class="hamburger" onclick="toggleMenu()">☰</button>
+        <div class="nav-links">
+            <a href="/specialMENU/SpecialMenu.html">Special Menu</a>
+            <a href="/review-app/canteenA/ReviewA.html">โรงอาหาร A</a>
+            <a href="/review-app/canteenB/ReviewB.html">โรงอาหาร B</a>
+            <a href="/review-app/canteenC/ReviewC.html">โรงอาหาร C</a>
+            <a href="/review-app/canteenVidya/ReviewVidya.html">โรงอาหาร Vidya</a>
+        </div>
+        <div class="mobile-nav" id="mobileNav">
+            <a href="/specialMENU/SpecialMenu.html">Special Menu</a>
+            <a href="/review-app/canteenA/ReviewA.html">โรงอาหาร A</a>
+            <a href="/review-app/canteenB/ReviewB.html">โรงอาหาร B</a>
+            <a href="/review-app/canteenC/ReviewC.html">โรงอาหาร C</a>
+            <a href="/review-app/canteenVidya/ReviewVidya.html">โรงอาหาร Vidya</a>
+        </div>
+    </div>
+
+    <h2>รีวิวโรงอาหาร A</h2>
+
+    <table border="1" id="reviewTable"></table>
+
+    <div class="input-container">
+        <h3 style="text-align: center; color: #E37A58;">เพิ่มรีวิวใหม่</h3>
+        <label>ร้านอาหาร:</label>
+        <input type="text" id="restaurant" placeholder="ชื่อร้านอาหาร">
+        
+        <label>ชื่ออาหาร:</label>
+        <input type="text" id="dish" placeholder="ชื่ออาหาร">
+        
+        <label>รีวิว:</label>
+        <input type="text" id="review" placeholder="รีวิวเกี่ยวกับอาหาร">
+        
+        <label>คะแนน:</label>
+        <input type="number" id="rating" min="1" max="5" placeholder="1-5">
+        
+        <label>รูปภาพ URL:</label>
+        <input type="text" id="image" placeholder="วางลิงก์รูปภาพ">
+        
+        <button onclick="addReview()">เพิ่มรีวิว</button>
+    </div>
+    <div id="message" style="text-align:center; font-weight:bold; margin-top:10px;"></div>
+</body>
+</html>
