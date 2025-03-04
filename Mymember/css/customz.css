@@ -1,0 +1,86 @@
+body {
+    background-color: #f7d0b3;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+header {
+    background-color: #1a73e8; /* สีน้ำเงิน */
+    text-align: center;
+    padding: 20px 0;
+}
+.logo-container {
+    max-width: 300px;
+    margin: 0 auto;
+}
+.logo {
+    max-width: 100%;
+}
+.members {
+    padding: 50px 0;
+    text-align: center;
+}
+.member-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 10px;
+}
+.name {
+    font-size: 1rem;
+    margin-top: 5px;
+}
+.app-intro {
+    padding: 30px 0;
+}
+.app-screenshots {
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+.app-description {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 5.5rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* เพิ่มเงาให้กับตัวอักษร */
+    color: white;
+    margin-bottom: 20px;
+    font-family: 'Nabla', cursive; /* ใช้ font Nabla */
+}
+
+h2{
+    font-size: 3rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    color: white;
+    margin-bottom: 20px;
+    font-family: 'Nabla', cursive;
+}
+p{
+    font-size: 1.7rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    color: white;
+    margin-bottom: 20px;
+    font-family: 'Nabla', cursive;
+}
+.download-apk-button {
+    display: inline-block;
+    padding: 50px 100px;
+    background-color: #2196F3;
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 60px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    align-self: center;
+}
+
+.download-apk-button:hover {
+    background-color: #0b7dda;
+}

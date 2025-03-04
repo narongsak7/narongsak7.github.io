@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สุ่มอาหารวันนี้</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- เปลี่ยนเส้นทางให้ถูกต้อง -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gradient-to-r from-orange-400 to-orange-300">
+    <div class="bg-white p-8 rounded-3xl shadow-xl text-center max-w-md">
+        <h1 class="text-3xl font-Kanit text-gray-800">🍽️ วันนี้กินอะไรดี?</h1>
+        
+        <div id="loading" class="loading" style="display: none;"></div>
+        
+        <div id="foodContainer" class="fade-in" style="display: none;">
+            <img id="foodImage" src="" class="w-64 h-64 mx-auto my-4 rounded-xl shadow-md">
+            <p id="foodName" class="text-2xl font-Kanit text-gray-700"></p>
+        </div>
+
+        <button onclick="randomFood()" class="mt-4 px-6 py-3 bg-orange-500 text-white text-lg font-Kanit rounded-full shadow-md hover:bg-orange-600 transition transform hover:scale-105 active:scale-95">
+            สุ่มอาหาร
+        </button>
+    </div>
+
+    <!-- เปลี่ยนเส้นทางให้ถูกต้อง -->
+    <script src="js/script.js" defer></script>
+</body>
+</html>

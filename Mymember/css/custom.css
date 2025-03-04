@@ -1,18 +1,91 @@
-.navbar-brand {
-    font-size: 1.5rem;
-    font-weight: bold;
+body {
+    background-color: #f7d0b3; /* สีพื้นหลังของหน้าเว็บ */
+    color: #fcf6ea; /* สีตัวอักษรเริ่มต้น */
+    box-sizing: border-box; /* กำหนดให้ padding และ border อยู่ในความกว้างของ element */
+    font-family: 'Arial', sans-serif; /* กำหนด font เริ่มต้น */
 }
 
+/* Navbar */
+.navbar {
+    position: fixed; /* กำหนดให้ navbar อยู่กับที่เมื่อเลื่อนหน้าจอ */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #e37b58; /* สีพื้นหลังของ navbar */
+    z-index: 100; /* กำหนดให้ navbar อยู่เหนือ element อื่นๆ */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* จัดเนื้อหาให้อยู่ตรงกลางแนวนอน */
+}
+
+.navbar-brand {
+    font-size: 1.5rem; /* ขนาดตัวอักษรของชื่อแบรนด์ */
+    font-weight: bold; /* ตัวหนา */
+}
+
+.hamburger {
+    position: absolute; /* กำหนดตำแหน่งสัมบูรณ์ */
+    left: 20px;
+    font-size: 24px;
+    cursor: pointer; /* เปลี่ยน cursor เป็นรูปมือเมื่อ hover */
+    color: white; /* สีไอคอน hamburger */
+}
+
+/* Sidebar */
+.sidebar {
+    height: 100%;
+    width: 0; /* เริ่มต้นด้วยความกว้าง 0 (ซ่อน) */
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #333; /* สีพื้นหลังของ sidebar */
+    overflow-x: hidden; /* ซ่อน scrollbar แนวนอน */
+    transition: 0.3s; /* สร้าง animation การเปลี่ยนแปลงความกว้าง */
+    padding-top: 60px;
+}
+
+.sidebar a {
+    padding: 15px;
+    text-decoration: none; /* ลบเส้นใต้ link */
+    font-size: 18px;
+    color: white;
+    display: block; /* ทำให้ link เต็มความกว้างของ sidebar */
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: #575757; /* เปลี่ยนสีพื้นหลังเมื่อ hover */
+}
+
+.closebtn {
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* Members Section */
 .members {
-    margin-top: 0px;
-    padding: 0px 0;
+    padding: 50px 0;
+    text-align: center;
 }
 
 .title {
     font-size: 5.5rem;
     font-weight: bold;
-    text-shadow: 2px 2px 5px ;
-    color: #1C005E ;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* เพิ่มเงาให้กับตัวอักษร */
+    color: #e37a58;
+    margin-bottom: 20px;
+    font-family: 'Nabla', cursive; /* ใช้ font Nabla */
+}
+
+.title2 {
+    font-size: 3.5rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    color: #e37a55;
     margin-bottom: 20px;
     font-family: 'Nabla', cursive;
 }
@@ -20,32 +93,63 @@
 .member-img {
     width: 120px;
     height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
+    border-radius: 50%; /* ทำให้รูปภาพเป็นวงกลม */
+    object-fit: cover; /* ปรับขนาดรูปภาพให้พอดีกับวงกลม */
     margin: 15px;
     border: 3px solid white;
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out; /* เพิ่ม animation เมื่อ hover */
 }
 
 .member-img:hover {
-    transform: scale(1.1);
+    transform: scale(1.1); /* ขยายรูปภาพเมื่อ hover */
+}
+
+.name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    color: #1C005E;
+    margin-bottom: 20px;
+    font-family: 'Nabla', cursive;
+    background-color: aliceblue;
+    display: block;
+    padding: 5px;
+}
+
+.name2 {
+    font-size: 1rem;
+    font-weight: lighter;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    color: #1C005E;
+    margin-bottom: 1px;
+    font-family: 'Nabla', cursive;
 }
 
 .footer {
     margin-top: 180px;
     font-size: 1rem;
     font-weight: bold;
-    color: #1C005E ;
+    color: #1C005E;
     font-family: 'Nabla', cursive;
     background-color: azure;
+    text-align: center;
+    padding: 10px;
 }
 
-/* PAGE */
-.header P {
+/* Page Specific Styles */
+.header p {
     font-size: 2.5rem;
     margin-top: 20px;
     color: #343a40;
 }
+
+.your-image-class {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+}
+
 .memberP-img {
     width: 50px;
     height: 50px;
@@ -55,6 +159,7 @@
     border: 3px solid white;
     transition: transform 0.3s ease-in-out;
 }
+
 .mainmemberP-img {
     width: 400px;
     height: 400px;
@@ -63,12 +168,15 @@
     border: 3px solid white;
     transition: transform 0.3s ease-in-out;
 }
-.memberP-img:hover{
+
+.memberP-img:hover {
     transform: scale(1.1);
 }
+
 .main-contentP {
     margin-top: 40px;
 }
+
 .textboxP {
     padding: 15px;
     border-radius: 10px;
@@ -76,30 +184,14 @@
     display: inline-block;
     margin-top: 20px;
     font-family: 'Itim', cursive;
-    background-color: snow;
+    background-color: rgb(209, 120, 56);
 }
+
 .bottom-rightP {
     position: fixed;
     bottom: 20px;
     right: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-.name{
-    font-size: 1.5rem;
-    font-weight: bold;
-    text-shadow: 2px 2px 5px ;
-    color: #1C005E ;
-    margin-bottom: 20px;
-    font-family: 'Nabla', cursive;
-    background-color: aliceblue;
-}
-
-.name2{
-    font-size: 1rem;
-    font-weight: lighter;
-    text-shadow: 1px 1px 5px ;
-    color: #1C005E ;
-    margin-bottom: 1px;
-    font-family: 'Nabla', cursive;
+    display: none; /* ซ่อน element เริ่มต้น */
 }

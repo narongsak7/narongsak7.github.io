@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>วงล้อสุ่ม</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+    <body class="bg-gradient-to-r from-orange-200 via-orange-400 to-orange-200 font-sans flex flex-col items-center justify-center min-h-screen mt-15">
+
+
+    <div class="input-container text-center p-8 rounded-xl shadow-xl bg-white max-w-md w-full mb-8">
+        <h2 class="text-3xl font-bold text-gray-700 mb-4">เพิ่มเมนูอาหาร</h2>
+        <input type="text" id="inputText" placeholder="กรอกข้อความ" class="w-full p-3 border-2 border-gray-300 rounded-lg mb-4 text-lg">
+        <button onclick="addTextToWheel()" class="w-full p-3 bg-blue-500 text-white font-semibold rounded-lg">เพิ่ม</button>
+    </div>
+
+    <div class="wheel-container mt-8 mb-8" id="wheelContainer">
+        <div id="wheel" class="wheel"></div>
+    </div>
+
+    <div class="spin-button-container mt-8 mb-8 text-center" id="spinButtonContainer">
+        <button id="spinButton" onclick="spinWheel()" class="bg-gradient-to-r from-blue-500 to-indigo-500 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 ease-in-out">หมุนวงล้อ</button>
+    </div>
+
+    <!-- Add a new div to show the result -->
+    <div id="resultText" class="hidden result-container text-center">
+        <h2 id="resultMessage" class="text-3xl font-bold text-white"></h2>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

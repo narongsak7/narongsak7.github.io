@@ -1,0 +1,26 @@
+/* Style for fading in the food display */
+.fade-in {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+.fade-in.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Loading spinner styles */
+.loading {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid #FF6600;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

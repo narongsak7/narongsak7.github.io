@@ -1,0 +1,26 @@
+{
+    "siamSi": [
+        "ใบที่ 1: ท่านจะประสบความสำเร็จในสิ่งที่ปรารถนา",
+        "ใบที่ 2: ระวังเรื่องสุขภาพและอุบัติเหตุ",
+        "ใบที่ 3: จะมีโชคลาภเข้ามาอย่างไม่คาดฝัน",
+        "ใบที่ 4: ความรักจะสมหวังดังใจปรารถนา",
+        "ใบที่ 5: การงานจะราบรื่นและเจริญก้าวหน้า",
+        "ใบที่ 6: ควรระมัดระวังการใช้จ่าย",
+        "ใบที่ 7: จะมีผู้ใหญ่ให้การช่วยเหลือ",
+        "ใบที่ 8: การเดินทางจะนำโชคลาภมาให้",
+        "ใบที่ 9: ควรทำบุญทำทานเพื่อเสริมสิริมงคล",
+        "ใบที่ 10: ระวังเรื่องความขัดแย้งกับคนรอบข้าง"
+    ],
+    "foods": [
+        { "name": "ปลา: หมายถึงความอุดมสมบูรณ์", "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSS-LMi53qwcuOZ2lfRBzCd5m9zo7Awf2t9yg&s" },
+        { "name": "ไก่: หมายถึงความเจริญก้าวหน้า", "image": "https://static.thairath.co.th/media/dFQROr7oWzulq5FZUHxI6OVEmwyB1VzRENU8WFwaC1gt8LjKYdSAMOOZMJj6iW3sDrD.webp" },
+        { "name": "หมู: หมายถึงความมั่งคั่งร่ำรวย", "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA5MQhOfiRCo54d_gPXyOAaMLTsipP3vWPhg&s" },
+        { "name": "เส้นหมี่: หมายถึงอายุยืนยาว", "image": "https://img.wongnai.com/p/1920x0/2017/12/09/894df4b3972d4e0bb3de4895a7e16703.jpg" },
+        { "name": "ส้ม: หมายถึงความเป็นสิริมงคล", "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTujKMuNbtt1R2tVsoOF5he4UJFkDl1fY0ibw&s" },
+        { "name": "ขนมหวาน: หมายถึงความหวานชื่น", "image": "https://dessertsmate.com/wp-content/uploads/2023/04/%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%A0%E0%B8%97%E0%B8%82%E0%B8%AD%E0%B8%87%E0%B8%82%E0%B8%99%E0%B8%A1.jpg" },
+        { "name": "เต้าหู้: หมายถึงความสุขและความสำเร็จ", "image": "https://res.cloudinary.com/dk0z4ums3/image/upload/v1684727920/attached_image_th/tofuwithsoybeanonwoodenboard.jpg" },
+        { "name": "ผักใบเขียว: หมายถึงความเจริญเติบโต", "image": "https://kroobannok.com/news_pic/p54179951745.jpg" },
+        { "name": "ผลไม้รวม: หมายถึงความโชคดี", "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGSb_JDawhki-MR0HHdncHSlnB5NEtyFZ8sA&s" },
+        { "name": "ข้าว: หมายถึงความอุดมสมบูรณ์", "image": "https://amarc.co.th/wp-content/uploads/2023/10/Artboard-2-100-1024x1024.jpg" }
+    ]
+}
