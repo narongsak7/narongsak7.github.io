@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>กำลังโหลด...</title>
+    <style>
+        /* ตั้งค่ากลางหน้าจอ */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffffff;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        /* สร้างวงกลมหมุน */
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(0, 0, 0, 0.2);
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* ข้อความกำลังโหลด */
+        .loading-text {
+            margin-top: 15px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+    <script>
+        // รอ 4 วินาทีแล้วเปลี่ยนหน้า
+        setTimeout(function() {
+            window.location.href = "webpage.html"; // เปลี่ยนเป็นหน้าที่ต้องการ
+        }, 4000);
+    </script>
+</head>
+<body>
+    <img src="assets/image/z.png">
+    <div class="spinner"></div>
+    <div class="loading-text">กำลังโหลด...</div>
+
+</body>
+</html>

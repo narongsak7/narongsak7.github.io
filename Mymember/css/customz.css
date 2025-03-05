@@ -5,7 +5,7 @@ body {
     padding: 0;
 }
 header {
-    background-color: #1a73e8; /* สีน้ำเงิน */
+    background-color: #f7d0b3; /* สีน้ำเงิน */
     text-align: center;
     padding: 20px 0;
 }
@@ -14,7 +14,7 @@ header {
     margin: 0 auto;
 }
 .logo {
-    max-width: 100%;
+    max-width: 70%;
 }
 .members {
     padding: 50px 0;
