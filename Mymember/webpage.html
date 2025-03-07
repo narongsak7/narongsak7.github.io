@@ -115,6 +115,37 @@
     height: auto; /* Maintain the aspect ratio */
 }
 
+.youtube-button {
+            display: flex;
+            align-items: center;
+            background-color: #FF0000;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 18px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+        }
+
+        .youtube-button:hover {
+            background-color: #CC0000;
+        }
+
+        .youtube-button img {
+            width: 70px;
+            height: 24px;
+            margin-right: 10px;
+        }
+        .center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20vh; /* ปรับให้เหมาะสม */
+    text-align: center;
+}
+
 
     </style>
 </head>
@@ -151,6 +182,7 @@
         <div>
             <img src="assets/image/x.png">
         </div>
+        
     </section>
 
     <section id="about-app" class="section bg-light">
@@ -158,7 +190,7 @@
             <h2>คุณกำลังประสบปัญหากับการรับประทานอาหารเดิมๆ โรงอาหารเดิมๆ ในสถาบันเราอยู่หรือไม่?</h2>
             <h1>งั้นมาใช้แอบ "WONGNOKKORK" ของเราสิ</h1>
             <p1>ในชีวิตประจำวันของคุณการเลือกรับประทานอาหารเป็นเรื่องที่ต้องเถียงกับเพื่อนหรือแฟนว่าจะกินที่ไหนดี และกินอะไรดี เนื่องจากมีตัวเลือกมากมายทั้งในแง่ของสถานที่และเมนูที่หลากหลาย แต่การตัดสินใจเลือก ร้านอาหารภายในมหาวิทยาลัยอาจไม่ใช่เรื่องง่ายเสมอไป นักศึกษามักพึ่งพาข้อมูลจากเพื่อน รีวิวในกลุ่มโซเชียล หรือการลองผิดลองถูกด้วยตัวเอง ซึ่งอาจใช้เวลานานและยังไม่มีระบบกลางที่รวบรวมข้อมูลร้านอาหารภายใน มหาวิทยาลัยให้เป็นระเบียบ เพื่อแก้ปัญหานี้ ทีมพัฒนาจึงได้สร้างแอปพลิเคชัน "Wongnok" ซึ่งเป็นแพลตฟอร์มสำหรับรีวิวอาหาร ภายในมหาวิทยาลัย โดยเน้นไปที่โรงอาหารในคณะวิทยาศาสตร์และคณะวิศวกรรมศาสตร์ ซึ่งมีโรงอาหารหลัก ให้บริการอยู่ 4 แห่ง คือ โรงA โรงB โรงC และโรงอาหารวิทยา นักศึกษาสามารถเขียนรีวิว ให้คะแนนร้านค้า และ แลกเปลี่ยนความคิดเห็นเกี่ยวกับเมนูอาหารได้อย่างง่ายดาย นอกจากนี้ Wongnokkork ยังมีฟีเจอร์พิเศษที่แตกต่างจาก แอปรีวิวทั่วไป เช่น ระบบวงล้อสุ่มร้านอาหาร หรือลองเสี่ยงเซียมซีรับเมนูมงคลประจำวันดูสิ ซึ่งฟังก์ชั่นต่างๆของเราจะเป็นตัวที่ช่วยให้การตัดสินใจเลือกร้านอาหารและเมนูเป็นเรื่องสนุกและไม่จำเจ</p1>
-        </div>
+        </div> 
     </section>
 
     <section id="function" class="section">
@@ -238,8 +270,13 @@
             </div>
         </div>
         <img src="assets/image/aaa.png" class="responsive-img">
+        <div class="center">
+            <a href="https://www.youtube.com/@YourChannel" class="youtube-button" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube Logo">
+                วิดีโอสาธิต
+            </a>
+        </div>
     </section>
-
     <section id="download-app" class="section bg-light">
         <div class="container">
             <h2>Download App</h2>
